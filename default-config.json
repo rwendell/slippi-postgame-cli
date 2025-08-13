@@ -1,0 +1,49 @@
+{
+	"replayFolder": "default",
+	"tag": [],
+	"stats": {
+		"successfulConversions": false,
+		"inputsPerMinute": true,
+		"digitalInputsPerMinute": true,
+		"openingsPerKill": true,
+		"damagePerOpening": true,
+		"neutralWinRatio": true,
+		"counterHitRatio": true,
+		"beneficialTradeRatio": true,
+		"conversions": true,
+		"combos": true,
+		"actionCounts": {
+			"wavedashCount": true,
+			"wavelandCount": true,
+			"airDodgeCount": true,
+			"dashDanceCount": true,
+			"spotDodgeCount": true,
+			"ledgegrabCount": true,
+			"rollCount": true,
+			"lCancelCount": {
+				"success": true,
+				"fail": true
+			},
+			"grabCount": {
+				"success": false,
+				"fail": true
+			},
+			"throwCount": {
+				"up": true,
+				"forward": true,
+				"back": true,
+				"down": true
+			},
+			"groundTechCount": {
+				"away": true,
+				"in": true,
+				"neutral": true,
+				"fail": true
+			},
+			"wallTechCount": {
+				"success": true,
+				"fail": true
+			}
+		}
+	}
+}
