@@ -35,8 +35,9 @@ const config: ConfigType = await Bun.file(await argv.config).json();
 
 console.log('listening recursively at:', argv.replayPath)
 watch(argv.replayPath, { recursive: true }, (event, filename) => {
+	console.log(event, filename);
 	if (event !== "change" || !filename!.endsWith('.slp')) return;
-	const game = new SlippiGame(filename!);
+	const game = new SlippiGame(argv.replayPath + filename!);
 
 	if (game.getGameEnd()) {
 		console.clear();
