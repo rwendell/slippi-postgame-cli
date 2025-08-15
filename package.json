@@ -4,8 +4,9 @@
 	"type": "module",
 	"private": true,
 	"scripts": {
-		"start": "bun index",
-		"dev": "bun --watch index"
+		"start": "bun src/index",
+		"dev": "bun --watch src/index",
+		"build": "bun build src/index.js --compile --outfile bin/slippi-postgame"
 	},
 	"devDependencies": {
 		"@types/bun": "latest",
