@@ -1,12 +1,12 @@
 #!/usr/bin/env bun
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
-import { watch } from 'node:fs';
 import { SlippiGame } from '@slippi/slippi-js';
 import type { ConfigType } from '../types/ConfigType';
+import chokidar from 'chokidar';
 import { getRequestedStats, type RecurseConfig } from './parser';
 
-const homeConfig = `${process.env.HOME}/.config/slippi-postgame/config.json`;
+const homeConfig = `${process.env.HOME}/.config/slippi-postgame/config.json`
 const argv = yargs(hideBin(process.argv))
 	.version(false)
 	.config({ logLevel: 'verbose' })
@@ -17,7 +17,7 @@ const argv = yargs(hideBin(process.argv))
 			alias: 'p',
 			describe: 'the path to your Slippi replays',
 			type: 'string',
-			default: process.env.HOME + '/Slippi/'
+			default: process.env.HOME + '/Slippi'
 		}
 	)
 	.option(
@@ -26,24 +26,32 @@ const argv = yargs(hideBin(process.argv))
 			alias: 'c',
 			describe: 'provide a custom config file',
 			type: 'string',
-			default: async () => await Bun.file(homeConfig).exists() ? homeConfig : 'default-config.json'
+			default: homeConfig
 		}
 	)
 	.parseSync();
 
-const config: ConfigType = await Bun.file(await argv.config).json();
+
+const config: ConfigType = await (Bun.file(argv.config).exists())
+	? await Bun.file(argv.config).json()
+	: (await createHomeConfig()).json;
 
 console.log('listening recursively at:', argv.replayPath)
-watch(argv.replayPath, { recursive: true }, (event, filename) => {
-	console.log(event, filename);
-	if (event !== "change" || !filename!.endsWith('.slp')) return;
-	const game = new SlippiGame(argv.replayPath + filename!);
-
-	if (game.getGameEnd()) {
-		console.clear();
-		console.log(getRequestedStats(game, config.stats as unknown as RecurseConfig, config.tags))
-	}
-})
-
+chokidar
+	.watch(argv.replayPath, { ignored: (path, stats) => (stats?.isFile() ?? false) && !path.endsWith('.slp') })
+	.on('change', (filepath) => {
+		const game = new SlippiGame(filepath);
+		if (game.getGameEnd()) {
+			console.clear();
+			console.log(getRequestedStats(game, config.stats as unknown as RecurseConfig, config.tags))
+		}
+	})
 
 
+
+async function createHomeConfig() {
+	console.info(`creating config file at ${homeConfig}`);
+	const config = await fetch("https://raw.githubusercontent.com/rwendell/slippi-postgame-cli/refs/heads/main/default-config.json");
+	Bun.write(homeConfig, config);
+	return Bun.file(homeConfig);
+}

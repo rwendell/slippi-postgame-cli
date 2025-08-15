@@ -17,6 +17,7 @@
 	},
 	"dependencies": {
 		"@slippi/slippi-js": "^7.1.0",
+		"chokidar": "^4.0.3",
 		"yargs": "^18.0.0"
 	}
 }
