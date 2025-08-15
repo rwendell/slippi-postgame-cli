@@ -1,8 +1,6 @@
 {
 	"replayFolder": "default",
-	"tags": [
-		"spro#0"
-	],
+	"tags": [],
 	"stats": {
 		"overall": {
 			"successfulConversions": false,
