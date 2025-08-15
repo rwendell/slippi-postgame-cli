@@ -1,47 +1,49 @@
 {
 	"replayFolder": "default",
-	"tag": [],
+	"tags": [
+		"spro#0"
+	],
 	"stats": {
-		"successfulConversions": false,
-		"inputsPerMinute": true,
-		"digitalInputsPerMinute": true,
-		"openingsPerKill": true,
-		"damagePerOpening": true,
-		"neutralWinRatio": true,
-		"counterHitRatio": true,
-		"beneficialTradeRatio": true,
-		"conversions": true,
-		"combos": true,
+		"overall": {
+			"successfulConversions": false,
+			"inputsPerMinute": false,
+			"digitalInputsPerMinute": false,
+			"openingsPerKill": false,
+			"damagePerOpening": false,
+			"neutralWinRatio": false,
+			"counterHitRatio": false,
+			"beneficialTradeRatio": false
+		},
 		"actionCounts": {
-			"wavedashCount": true,
-			"wavelandCount": true,
-			"airDodgeCount": true,
-			"dashDanceCount": true,
-			"spotDodgeCount": true,
-			"ledgegrabCount": true,
+			"wavedashCount": false,
+			"wavelandCount": false,
+			"airDodgeCount": false,
+			"dashDanceCount": false,
+			"spotDodgeCount": false,
+			"ledgegrabCount": false,
 			"rollCount": true,
 			"lCancelCount": {
 				"success": true,
-				"fail": true
+				"fail": false
 			},
 			"grabCount": {
 				"success": false,
 				"fail": true
 			},
 			"throwCount": {
-				"up": true,
-				"forward": true,
-				"back": true,
-				"down": true
+				"up": false,
+				"forward": false,
+				"back": false,
+				"down": false
 			},
 			"groundTechCount": {
-				"away": true,
-				"in": true,
-				"neutral": true,
+				"away": false,
+				"in": false,
+				"neutral": false,
 				"fail": true
 			},
 			"wallTechCount": {
-				"success": true,
+				"success": false,
 				"fail": true
 			}
 		}
