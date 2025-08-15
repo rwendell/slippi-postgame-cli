@@ -40,7 +40,7 @@ watch(argv.replayPath, { recursive: true }, (event, filename) => {
 
 	if (game.getGameEnd()) {
 		console.clear();
-		console.table(getRequestedStats(game, config.stats as unknown as RecurseConfig, config.tags))
+		console.log(getRequestedStats(game, config.stats as unknown as RecurseConfig, config.tags))
 	}
 })
 
