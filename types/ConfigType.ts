@@ -1,20 +1,21 @@
 export interface ConfigType {
 	replayFolder: string,
-	tag: string[],
-	stats: Partial<ConfigStatsType>
+	tags: string[],
+	stats: ConfigStatsType
 }
 
 export interface ConfigStatsType {
-	successfulConversions: boolean,
-	inputsPerMinute: boolean,
-	digitalInputsPerMinute: boolean,
-	openingsPerKill: boolean,
-	damagePerOpening: boolean,
-	neutralWinRatio: boolean,
-	counterHitRatio: boolean,
-	beneficialTradeRatio: boolean,
-	conversions: boolean,
-	combos: boolean,
+
+	overall: {
+		successfulConversions: boolean,
+		inputsPerMinute: boolean,
+		digitalInputsPerMinute: boolean,
+		openingsPerKill: boolean,
+		damagePerOpening: boolean,
+		neutralWinRatio: boolean,
+		counterHitRatio: boolean,
+		beneficialTradeRatio: boolean,
+	}
 	actionCounts: {
 		wavedashCount: boolean,
 		wavelandCount: boolean,
