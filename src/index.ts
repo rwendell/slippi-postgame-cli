@@ -10,7 +10,7 @@ pf("Slippi Postgame", chalk.green);
 console.info('\n', 'Listening at:', argv.replayPath)
 
 chokidar
-	.watch(argv.replayPath, { ignored: (path, stats) => (stats?.isFile() ?? false) && !path.endsWith('.slp') })
+	.watch(argv.replayPath,)
 	.on('change', (filepath) => {
 		const game = new SlippiGame(filepath);
 		if (game.getGameEnd()) {
