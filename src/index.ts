@@ -2,7 +2,7 @@ import { SlippiGame } from '@slippi/slippi-js';
 import chokidar from 'chokidar';
 import { getRequestedStats, type RecurseConfig } from './parser';
 import chalk from 'chalk';
-import { pf, clearToTitle } from './utils';
+import { pf, clearToTitle, toHumanReadable } from './utils';
 import { argv, config } from './helpers';
 
 console.clear();
@@ -15,8 +15,8 @@ chokidar
 		const game = new SlippiGame(filepath);
 		if (game.getGameEnd()) {
 			clearToTitle();
-			console.log(getRequestedStats(game, config.stats as unknown as RecurseConfig, config.tags))
+			const requestedStats = getRequestedStats(game, config.stats as unknown as RecurseConfig, config.tags);
+			console.log(chalk.bold(toHumanReadable(requestedStats)));
 		}
 	})
-
 

@@ -4,7 +4,7 @@ export type RecurseConfig = {
 	[key: string]: boolean | RecurseConfig;
 };
 type RecurseData = Record<string, any>;
-type RequestedStatsOutput = Record<string, any>;
+export type RequestedStatsOutput = Record<string, any>;
 
 function getPlayerIndex(tags: Array<string>, players: MetadataType["players"]) { return tags.includes(players![0]!.names!.code!) ? 0 : 1 }
 
