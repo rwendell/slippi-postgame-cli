@@ -5,7 +5,7 @@ export interface ConfigType {
 }
 
 export interface ConfigStatsType {
-
+	[key: string]: any;
 	overall: {
 		successfulConversions: boolean,
 		inputsPerMinute: boolean,

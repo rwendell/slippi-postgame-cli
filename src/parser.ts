@@ -1,4 +1,5 @@
-import { SlippiGame, type MetadataType } from "@slippi/slippi-js";
+import { type StatsType } from "@slippi/slippi-js";
+import type { ConfigStatsType } from "../types/ConfigType";
 
 export type RecurseConfig = {
 	[key: string]: boolean | RecurseConfig;
@@ -6,19 +7,17 @@ export type RecurseConfig = {
 type RecurseData = Record<string, any>;
 export type RequestedStatsOutput = Record<string, any>;
 
-function getPlayerIndex(tags: Array<string>, players: MetadataType["players"]) { return tags.includes(players![0]!.names!.code!) ? 0 : 1 }
-
 export function getRequestedStats(
-	game: SlippiGame,
-	requestedStats: RecurseConfig,
-	playerTags: Array<string>
+	stats: StatsType,
+	requestedStats: RecurseConfig | ConfigStatsType,
+	playerIndex: number
 ): RequestedStatsOutput {
 	const result = {};
-	const playerIndex = getPlayerIndex(playerTags, game.getMetadata()?.players);
+	console.log(playerIndex);
 
 	function _recurseAndProcess(
 		config: RecurseConfig,
-		stats: RecurseData,
+		stats: RecurseData | ConfigStatsType,
 		resultNode: RequestedStatsOutput
 	) {
 		Object.entries(config).forEach(([key, configValue]) => {
@@ -40,6 +39,6 @@ export function getRequestedStats(
 		});
 	}
 
-	_recurseAndProcess(requestedStats, game.getStats()!, result);
+	_recurseAndProcess(requestedStats, stats, result);
 	return result;
 }

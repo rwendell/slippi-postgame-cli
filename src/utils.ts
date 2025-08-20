@@ -1,7 +1,12 @@
+import type { MetadataType } from "@slippi/slippi-js";
 import chalk, { type ChalkInstance } from "chalk";
 import figlet from "figlet";
 
 export function pf(txt: string, format: ChalkInstance = chalk.reset) { console.log(format(figlet.textSync(txt, 'DOS Rebel'))) }
+
+export function getPlayerIndex(tags: Array<string>, players: MetadataType["players"]) { return Object.values(players!).findIndex(player => tags.map(tag => tag.toUpperCase()).includes(player?.names?.code as string)) }
+
+export function getOpponentName(playerIndex: number, players: MetadataType["players"]) { return Object.values(players!).find((_player, index) => index !== playerIndex)?.names?.netplay }
 
 export function clearToTitle() {
 	process.stdout.cursorTo(0, 12);
